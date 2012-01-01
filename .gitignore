@@ -1,0 +1,7 @@
+.DS_Store
+.rbversion-local
+.rspec
+.gem
+*.sqlite
+*.log
+*.pid
