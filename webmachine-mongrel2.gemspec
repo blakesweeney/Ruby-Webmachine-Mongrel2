@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "webmachine-mongrel2"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.platform = Gem::Platform::RUBY
   s.authors = ["Blake Sweeney"]
   s.email = "blakes.85@gmail.com"
@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.description = "Adapter from Mongrel2 to Webmachine-ruby"
 
   # Dependecies
-  s.add_dependency('mongrel2', '~> 0.9.2')
-  s.add_dependency('webmachine', '~> 0.4.0')
+  s.add_dependency('mongrel2', '>= 0.9.2')
+  s.add_dependency('webmachine', '>= 0.4.0')
 
   s.files = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
