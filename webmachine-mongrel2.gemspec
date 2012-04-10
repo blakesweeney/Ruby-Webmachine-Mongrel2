@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.description = "Adapter from Mongrel2 to Webmachine-ruby"
 
   # Dependecies
-  s.add_dependency('mongrel2', '>= 0.9.2')
-  s.add_dependency('webmachine', '>= 0.4.0')
+  s.add_dependency('mongrel2', '~> 0.20.1')
+  s.add_dependency('webmachine', '~> 0.4.0')
 
   s.files = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
