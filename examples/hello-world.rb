@@ -15,23 +15,23 @@ class HelloResource < Webmachine::Resource
 
   def process
     name = request.uri.path.split("/")[2]
-    @data = { 'hello' => name || 'world' }
-    @data['hello'].capitalize!
+    @data = name || 'world'
+    @data.capitalize!
   end
 
   def to_json
     process
-    return @data.to_json
+    return { 'hello' => @data }.to_json
   end
 
   def to_html
     process
-    return "<html><head><title>Hello #{@data['hello']}</title></head></html>"
+    return "<html><head><title>Hello #{@data}</title></head></html>"
   end
 
   def to_text
     process
-    return "Hello " << @data['hello']
+    return "Hello " << @data
   end
 end
 

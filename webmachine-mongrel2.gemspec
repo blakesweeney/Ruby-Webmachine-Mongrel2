@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   # Dependecies
   s.add_dependency('mongrel2', '~> 0.9.2')
-  s.add_dependency('webmachine', '~> 0.3.0')
+  s.add_dependency('webmachine', '~> 0.4.0')
 
   s.files = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
