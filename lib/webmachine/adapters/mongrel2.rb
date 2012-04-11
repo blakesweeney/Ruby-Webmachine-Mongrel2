@@ -16,14 +16,20 @@ module Webmachine
       def run
         config = Webmachine.configuration.adapter_options
         ::Mongrel2::Config.configure(:configdb => config[:database])
+        trap("INT") { stop }
         Webmachine::Adapters::Mongrel2::Handler.run(config[:handler_id])
       end
 
       class Handler < ::Mongrel2::Handler
+        def initialize(dispatcher)
+          @dispatcher = dispatcher
+          super
+        end
+
         def handle(request)
           web_request = webmachine_request(request)
           web_response = Webmachine::Response.new
-          Webmachine::Dispatcher.dispatch(web_request, web_response)
+          @dispatcher.dispatch(web_request, web_response)
           return mongrel_response(request, web_response)
         end
 
