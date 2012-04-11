@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "webmachine-mongrel2"
-  s.version = "0.0.2"
+  s.version = "0.0.3"
   s.platform = Gem::Platform::RUBY
   s.authors = ["Blake Sweeney"]
   s.email = "blakes.85@gmail.com"
