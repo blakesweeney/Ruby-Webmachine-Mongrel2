@@ -41,7 +41,7 @@ end
 
 Webmachine.configure do |config|
   config.adapter = :Mongrel2
-  config.adapter_options[:database] = 'config.sqlite'
+  config.adapter_options[:database] = 'sqlite://config.sqlite'
   config.adapter_options[:handler_id] = '079AEFBC-6F38-425E-80F2-77C5DB19A302'
 end
 

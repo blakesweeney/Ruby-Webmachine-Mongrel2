@@ -16,14 +16,19 @@ module Webmachine
       def run
         config = Webmachine.configuration.adapter_options
         ::Mongrel2::Config.configure(:configdb => config[:database])
-        trap("INT") { stop }
-        Webmachine::Adapters::Mongrel2::Handler.run(config[:handler_id])
+        Webmachine::Adapters::Mongrel2::Handler.run(config[:handler_id], dispatcher)
       end
 
       class Handler < ::Mongrel2::Handler
-        def initialize(dispatcher)
-          @dispatcher = dispatcher
-          super
+        attr_accessor :dispatcher
+
+        def self.run(id, dispatcher)
+          ::Mongrel2.log.info "Running application %p" % [id]
+          send_spec, recv_spec = self.connection_info_for(id)
+          ::Mongrel2.log.info " config specs: %s <-> %s" % [send_spec, recv_spec]
+          handler = new(id, send_spec, recv_spec)
+          handler.dispatcher = dispatcher
+          handler.run
         end
 
         def handle(request)
