@@ -9,14 +9,14 @@ module Webmachine
   module Adapters
     # An adapter to allow webmachine to work with Mongrel2. Doesn't currently
     # support streaming bodies.
-    class Mongrel2 < Adapter
+    class M2 < Adapter
 
       SERVER = Webmachine::SERVER_STRING + "  " + ::Mongrel2.version_string(true)
 
       def run
         config = Webmachine.configuration.adapter_options
         ::Mongrel2::Config.configure(:configdb => config[:database])
-        Webmachine::Adapters::Mongrel2::Handler.run(config[:handler_id], dispatcher)
+        Webmachine::Adapters::M2::Handler.run(config[:handler_id], dispatcher)
       end
 
       class Handler < ::Mongrel2::Handler
