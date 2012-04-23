@@ -14,7 +14,7 @@ module Webmachine
       SERVER = Webmachine::SERVER_STRING + "  " + ::Mongrel2.version_string(true)
 
       def run
-        config = Webmachine.configuration.adapter_options
+        config = @configuration.adapter_options
         ::Mongrel2::Config.configure(:configdb => config[:database])
         Webmachine::Adapters::M2::Handler.run(config[:handler_id], dispatcher)
       end
@@ -53,7 +53,7 @@ module Webmachine
           def webmachine_request(request)
             headers = Webmachine::Headers.new
             request.headers.each do |key, value|
-              key = (key.is_a?(String) ? key.sub('_', '-') : key )
+              key = key.to_s.gsub('_', '-')
               headers[key] = value
             end
             uri = URI.parse(request.headers.uri)
