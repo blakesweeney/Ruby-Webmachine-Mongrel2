@@ -13,6 +13,17 @@ class HelloResource < Webmachine::Resource
       ['application/json', :to_json]]
   end
 
+  def known_content_type?(content_type)
+    content_types_provided.any? do |(type, func)|
+      if content_type == type
+        func
+        true
+      else
+        false
+      end
+    end
+  end
+
   def process
     name = request.uri.path.split("/")[2]
     @data = name || 'world'
