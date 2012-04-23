@@ -53,7 +53,8 @@ module Webmachine
           def webmachine_request(request)
             headers = Webmachine::Headers.new
             request.headers.each do |key, value|
-              headers[key.sub('_', '-')] = value
+              key = (key.is_a?(String) ? key.sub('_', '-') : key )
+              headers[key] = value
             end
             uri = URI.parse(request.headers.uri)
             method = request.headers[:method]
